@@ -8,5 +8,8 @@ export default createGlobalStyle`
   font-family: 'Roboto', sans-serif;
   color: #fff;
 }
+a{
+  text-decoration: none;
+}
 
 `;

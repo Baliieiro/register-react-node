@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -22,42 +23,23 @@ const ContainerItens = styled.section`
     rgba(255, 255, 255, 0.6) 0.85%,
     rgba(255, 255, 255, 0.15) 100%
   );
+  backdrop-filter: blur(45px);
   padding: 50px 36px;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 218px);
+  /* height: 100%; */
+  min-height: calc(100vh - 200px);
+  gap: 28px;
 `;
 
-const InputLabel = styled.label`
-  margin-left: 25px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 22px;
-  letter-spacing: -0.408px;
-`;
-const Input = styled.input`
-  padding: 15px 25px;
-  font-size: 24px;
-  line-height: 28px;
-  width: 352px;
-  height: 58px;
-
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  border: none;
-  outline: none;
-  margin-bottom: 36px;
-`;
-const Button = styled.button`
+const Button = styled(Link)`
   width: 342px;
   height: 74px;
   margin-top: 130px;
 
-  background: rgba(0, 0, 0, 0.8);
+  background: transparent;
   border-radius: 14px;
-  border: none;
+  border: 1px solid #fff;
 
   font-size: 17px;
   line-height: 28px;
@@ -69,10 +51,6 @@ const Button = styled.button`
   justify-content: center;
   gap: 20px;
 
-  img {
-    transform: rotate(180deg);
-  }
-
   &:hover {
     opacity: 0.8;
   }
@@ -82,4 +60,34 @@ const Button = styled.button`
   }
 `;
 
-export { Container, Image, ContainerItens, InputLabel, Input, Button };
+const User = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+
+  width: 342px;
+  height: 58px;
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 14px;
+  outline: none;
+
+  p {
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  button {
+    width: 24px;
+    height: 28px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+`;
+
+export { Container, Image, ContainerItens, Button, User };

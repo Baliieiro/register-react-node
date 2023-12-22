@@ -1,45 +1,39 @@
 import People from "../../assets/image-home.svg";
 import Arrow from "../../assets/arrow.png";
-import Trash from "../../assets/trash.svg";
+import Title from "../../components/Title";
 import {
   Button,
   Container,
   ContainerItens,
-  H1,
   Image,
   Input,
   InputLabel,
-  User,
 } from "./style";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
   const inputName = useRef();
   const inputAge = useRef();
+  const navigate = useNavigate();
 
-  function addUsers() {
-    const newUser = {
+  async function addUsers() {
+    const { data: newUser } = await axios.post("http://localhost:3000/users", {
       name: inputName.current.value,
       age: inputAge.current.value,
-      id: Math.random(),
-    };
-
-    console.log(inputName);
+    });
 
     setUsers([...users, newUser]);
-  }
-
-  function deleteUsers(userId) {
-    const userDeleted = users.filter((user) => user.id !== userId);
-    setUsers(userDeleted);
+    navigate("/usuarios");
   }
 
   return (
     <Container>
       <Image src={People} alt="imagem-logo" />
       <ContainerItens>
-        <H1>Olá</H1>
+        <Title>Olá</Title>
         <InputLabel htmlFor="name">Nome</InputLabel>
         <Input
           type="text"
@@ -60,16 +54,6 @@ export default function Home() {
         <Button onClick={addUsers}>
           Cadastrar <img src={Arrow} alt="seta" />
         </Button>
-        <ul>
-          {users.map((user) => (
-            <User key={user.id}>
-              <p>{user.name}</p> <p>{user.age} Anos</p>{" "}
-              <button onClick={() => deleteUsers(user.id)}>
-                <img src={Trash} alt="lata-de-lixo" />
-              </button>
-            </User>
-          ))}
-        </ul>
       </ContainerItens>
     </Container>
   );
